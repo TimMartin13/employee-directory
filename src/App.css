@@ -1,4 +1,31 @@
-.App {
+header {
+  background-color: rgb(33, 33, 33);
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  height: 120px;
+  padding: 20px;
+  border-bottom: 5px solid #0DAFDE;
+  margin-bottom: 10px;
+  opacity: 90%;
+}
+
+.centered {
+  align-items: center;
+}
+
+Row {
+  margin-bottom: 10px;
+}
+
+/* .form-group {
+  background-color: blueviolet;
+} */
+
+.search-form {
+  display: flex;
+}
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +62,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
