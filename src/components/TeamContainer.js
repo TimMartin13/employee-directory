@@ -21,6 +21,7 @@ class TeamContainer extends React.Component {
     getEmployeeList = () => {
         API.search()
         .then(res => {
+            console.log(res.data.results)
             this.setState({ result: res.data.results, searchArr: res.data.results });
         })
         .catch(err => console.log(err));
@@ -72,16 +73,16 @@ class TeamContainer extends React.Component {
                     <Row>
                         <Col size="sm-6">
                             <SearchForm
-                                value={this.state.search}
-                                handleInputChange={this.handleInputChange}
-                                handleFormSubmit={this.handleFormSubmit}
+                                value={ this.state.search }
+                                handleInputChange={ this.handleInputChange }
+                                handleFormSubmit={ this.handleFormSubmit }
                             />
                         </Col>
                     </Row>
                     <br></br>
                     <Row>
                         <Col size="sm-3">Image</Col>
-                        <Col size="sm-3"> <a href="#" onClick={this.sortByName}>Name</a></Col>
+                        <Col size="sm-3"> <a href="#" onClick={ this.sortByName }>Name</a></Col>
                         <Col size="sm-3">Phone</Col>
                         <Col size="sm-3">Email</Col>
                         <br></br>
@@ -91,15 +92,15 @@ class TeamContainer extends React.Component {
                         this.state.searchArr.length > 0
                         ? this.state.searchArr.map((employee, index) => (
                             <>
-                                <Row>
+                                <div className="row flex">
                                     <EmployeeDetail
-                                        picture={ employee.picture.thumbnail }
+                                        picture={ employee.picture.large }
                                         title={ employee.name.first + " " +  employee.name.last }
                                         phone={ employee.phone }
                                         email={ employee.email }
                                         key={ employee.email }
                                     />
-                                </Row>
+                                </div>
                                 <br></br>
                             </>    
                         ))
