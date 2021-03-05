@@ -10,7 +10,8 @@ class TeamContainer extends React.Component {
     state = {
       result: {},
       searchArr: {},
-      search: ""
+      search: "",
+      count: 0
     };
 
     componentDidMount() {
@@ -36,6 +37,18 @@ class TeamContainer extends React.Component {
             });
             this.setState({ searchArr: tempArray });
         }
+    }
+
+    sortByName = () => {
+        let sortedArray = [];
+        this.setState({ count: this.state.count + 1 });
+        if (this.state.count % 2) {
+            sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? 1 : -1);
+        }
+        else {
+            sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? -1 : 1);
+        }
+        this.setState({ searchArr: sortedArray });
     }
 
     handleInputChange = event => {
@@ -65,11 +78,14 @@ class TeamContainer extends React.Component {
                             />
                         </Col>
                     </Row>
+                    <br></br>
                     <Row>
                         <Col size="sm-3">Image</Col>
-                        <Col size="sm-3">Name</Col>
+                        <Col size="sm-3"> <a href="#" onClick={this.sortByName}>Name</a></Col>
                         <Col size="sm-3">Phone</Col>
                         <Col size="sm-3">Email</Col>
+                        <br></br>
+                        <br></br>
                     </Row>
                     {
                         this.state.searchArr.length > 0

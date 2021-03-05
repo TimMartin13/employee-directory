@@ -14,8 +14,8 @@ header {
   align-items: center;
 }
 
-Row {
-  margin-bottom: 10px;
+Col {
+  font-weight: bold;
 }
 
 /* .form-group {
