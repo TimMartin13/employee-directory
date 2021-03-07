@@ -19,6 +19,8 @@ function SearchForm(props) {
             Search
           </button>
         </div>
+          <button className="btn btn-secondary sortBtn" href="#" onClick={ props.sortByNameAZ }>Sort A-Z</button>
+          <button className="btn btn-secondary sortBtn" href="#" onClick={ props.sortByNameZA }>Sort Z-A</button>              
       </div>
     </form>
   );

@@ -11,7 +11,6 @@ class TeamContainer extends React.Component {
       result: {},
       searchArr: {},
       search: "",
-      count: 0
     };
 
     componentDidMount() {
@@ -40,15 +39,17 @@ class TeamContainer extends React.Component {
         }
     }
 
-    sortByName = () => {
+    sortByNameAZ = (e) => {
+        e.preventDefault();
         let sortedArray = [];
-        this.setState({ count: this.state.count + 1 });
-        if (this.state.count % 2) {
-            sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? 1 : -1);
-        }
-        else {
-            sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? -1 : 1);
-        }
+        sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? 1 : -1);
+        this.setState({ searchArr: sortedArray });
+    }
+
+    sortByNameZA = (e) => {
+        e.preventDefault();
+        let sortedArray = [];
+        sortedArray = this.state.searchArr.sort((a, b) => a.name.last > b.name.last ? -1 : 1);
         this.setState({ searchArr: sortedArray });
     }
 
@@ -71,33 +72,30 @@ class TeamContainer extends React.Component {
                 <header>Employee Directory</header>
                 <Container>
                     <Row>
-                        <Col size="sm-6">
+                        <Col size="md-2"></Col>
+                        <Col size="md-8">
                             <SearchForm
                                 value={ this.state.search }
                                 handleInputChange={ this.handleInputChange }
                                 handleFormSubmit={ this.handleFormSubmit }
+                                sortByNameAZ={ this.sortByNameAZ }
+                                sortByNameZA={ this.sortByNameZA }
                             />
                         </Col>
+                        <Col size="md-2"></Col>
                     </Row>
                     <br></br>
-                    <Row>
-                        <Col size="sm-3">Image</Col>
-                        <Col size="sm-3"> <a href="#" onClick={ this.sortByName }>Name</a></Col>
-                        <Col size="sm-3">Phone</Col>
-                        <Col size="sm-3">Email</Col>
-                        <br></br>
-                        <br></br>
-                    </Row>
                     {
                         this.state.searchArr.length > 0
                         ? this.state.searchArr.map((employee, index) => (
                             <>
-                                <div className="row flex">
+                                <div className="flex">
                                     <EmployeeDetail
                                         picture={ employee.picture.large }
                                         title={ employee.name.first + " " +  employee.name.last }
                                         phone={ employee.phone }
                                         email={ employee.email }
+                                        location={ employee.location.country }
                                         key={ employee.email }
                                     />
                                 </div>
